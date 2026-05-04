@@ -1,5 +1,6 @@
 package com.narxoz.rpg.vault;
 
+import com.narxoz.rpg.visitor.WeightCalculator;
 import com.narxoz.rpg.artifact.Armor;
 import com.narxoz.rpg.artifact.Inventory;
 import com.narxoz.rpg.artifact.Potion;
@@ -50,6 +51,12 @@ public class ChronomancerEngine {
         CurseDetector curseDetector = new CurseDetector();
         vaultInventory.accept(curseDetector);
         System.out.println("Cursed artifacts detected: " + curseDetector.getCursedCount());
+
+        System.out.println();
+
+        WeightCalculator weightCalculator = new WeightCalculator();
+        vaultInventory.accept(weightCalculator);
+        System.out.println("Total vault inventory weight: " + weightCalculator.getTotalWeight());
 
         System.out.println("=== Visitor Phase: Artifact Appraisal Ends ===");
 
